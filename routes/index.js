@@ -132,6 +132,8 @@ router.get('/loans', function(req, res) {
   });
 });
 
+// ** TODO: /stats route for querying sclog
+
 router.post('/logout', function(req, res) {
   var localTime  = moment.utc().toDate();
   localTime = moment(localTime).format('YYYY-MM-DD HH:mm:ss');
