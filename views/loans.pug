@@ -1,0 +1,4 @@
+each item in loans
+	tr
+		td #{item.title}
+		td #{moment(item.due_date).format('MMMM d, YYYY')}

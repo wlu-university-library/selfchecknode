@@ -1,0 +1,36 @@
+extends template
+
+block content
+	if error && error.length
+		div.card.bg-danger.col-6.mx-auto.text-white.mt-3#loginerror
+			h4.card-header Login Error
+			div.card-body
+				p.card-title= error
+		script.
+			$(document).ready(function() {
+				setTimeout(function () {
+					$("#loginerror").fadeOut(1000);
+				}, 4000);
+			});
+
+	if success && success.length
+		div.card.bg-success.col-6.mx-auto.text-white.mt-3#logoutconf
+			h4.card-header Logged Out Successfully
+			div.card-body
+				p.card-text Thank you for using our self checkout kiosk.
+		script.
+			$(document).ready(function() {
+				setTimeout(function () {
+					$("#logoutconf").fadeOut(1000);
+				}, 3000);
+			});
+
+	section.maincontent.smallbox#loginbox
+		div.h1title W&amp;L Self Checkout Service
+		div.databox
+			div.h2title Please scan your ID card
+				form#loginform(method="post", action="/")
+					div
+						input#userid(type="text", placeholder="ID...", name="userid")
+					div
+						button.btn.btn-primary.btn-large.btn-lg#login Login

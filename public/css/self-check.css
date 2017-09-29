@@ -1,0 +1,310 @@
+/* COMMMON */
+
+* {
+	/* font-family: "Roboto", "Helvetica", "Arial", sans-serif; */
+	margin: 0px;
+	padding: 0px;
+	/* line-height: 18px; */
+}
+
+body {
+	background-color: #F0F5FF;
+}
+
+section {
+	position: absolute;
+	top: 37%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-37%);
+}
+
+form {
+	display: inline;
+}
+
+input {
+	outline: none;
+}
+
+textarea {
+	outline: none;
+}
+
+caption {
+	color: #000;
+	caption-side: top;
+	font-weight: bold;
+}
+
+.hide {
+	display: none;
+}
+
+.show {
+	display: initial;
+}
+
+.aligncenter {
+	text-align: center;
+}
+
+
+/* TOP TOOLBAR */
+
+.toptoolbar {
+	width: 100%;
+	background: #ededed;
+	background: #14436c;
+	/* background: -webkit-linear-gradient(#ffffff, #ededed);
+	background: -o-linear-gradient(#ffffff, #ededed);
+	background: -moz-linear-gradient(#ffffff, #ededed);
+	background: linear-gradient(#ffffff, #ededed);  */
+	border-bottom: 1px solid #909090;
+	box-shadow: 0px 3px 5px 0px #acacac;
+}
+
+.toptoolbar .logo p {
+	padding: 1rem 0;
+	text-align: center;
+	font-family: "Libre Baskerville", Georgia, 'Times New Roman', Times, serif;
+	font-size: 2rem;
+	color: #fff;
+	margin-bottom: 0;
+}
+
+
+/* MAIN CONTENT */
+
+.maincontent {
+	text-align: center;
+	margin: 40px auto 0px auto;
+	background: #fafafa;
+	background: -webkit-linear-gradient(#ffffff, #ededed);
+	background: -o-linear-gradient(#ffffff, #ededed);
+	background: -moz-linear-gradient(#ffffff, #ededed);
+	background: linear-gradient(#ffffff, #ededed);
+	border: 1px solid #cacaca;
+	border-radius: 2px;
+	box-shadow: 0px 3px 5px 0px #acacac;
+}
+
+.smallbox {
+	width: 500px;
+}
+
+.largebox {
+	width: 900px;
+}
+
+#loginbox {
+	height: 300px;
+}
+
+#scanbox {
+	min-height: 500px;
+}
+
+.maincontent .h1title {
+	padding: 20px;
+	background: #0B4577;
+	background: -webkit-linear-gradient(#14436c, #1c5d97);
+	background: -o-linear-gradient(#14436c, #1c5d97);
+	background: -moz-linear-gradient(#14436c, #1c5d97);
+	background: linear-gradient(#14436c, #1c5d97);
+	color: #ffffff;
+	font-weight: bold;
+	border-radius: 2px 2px 0px 0px;
+	font-size: 140%;
+}
+
+.maincontent .h2title {
+	font-size: 120%;
+	font-weight: bold;
+	color: #202020;
+	padding-bottom: 15px;
+}
+
+.maincontent .databox div {
+	padding: 1em 0 0;
+}
+
+.maincontent .databox input[type="text"] {
+	margin: 5px 0px 5px 5px;
+	border: 1px solid #cdcdcd;
+	border-radius: 2px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	height: 32px;
+	outline: none;
+	background-color: #fff;
+	padding: 0 10px 0 10px;
+	width: 80%;
+	font-size: 15px;
+	font-weight: 300;
+	text-overflow: ellipsis;
+	text-align: center;
+}
+
+#barcode {
+	/* margin: 5px 10px 5px 93px; */
+	/* width: 645px; */
+	margin: 5px auto;
+}
+
+#newloans {
+	padding-top: 0em;
+}
+
+#prevloans {
+	padding-bottom: 1em;
+}
+
+.maincontent .databox button {
+	/* padding: 10px 40px;
+
+	color: #ffffff;
+	font-weight: bold;
+
+	border-radius: 5px;
+	border: 1px solid #909090;
+	
+	background: #656565;
+	background: -webkit-linear-gradient(#808080, #505050);
+	background: -o-linear-gradient(#808080, #505050);
+	background: -moz-linear-gradient(#808080, #505050);
+	background: linear-gradient(#808080, #505050);
+	
+	cursor: pointer;  */
+}
+
+.maincontent .databox button:hover {
+	/* background: #404040;
+	background: -webkit-linear-gradient(#505050, #202020);
+	background: -o-linear-gradient(#505050, #202020);
+	background: -moz-linear-gradient(#505050, #202020);
+	background: linear-gradient(#505050, #202020); */
+}
+
+#scanboxtitle {
+	text-align: left;
+}
+
+.errormessage {
+	color: #fff;
+	margin: 1em auto;
+	background: #d00;
+	border: 1px solid #800;
+	width: 30%;
+	padding: 1em;
+	text-align: center;
+	font-size: 1.5em;
+	border-radius: 2px;
+}
+
+.maincontent .headertable {
+	width: 100%;
+	background: #dadada;
+}
+
+.maincontent .headertable td {
+	padding: 15px 0px 15px 0px;
+	width: 33.3%;
+}
+
+.maincontent .headertable td .headertablekey {}
+
+.maincontent .headertable td .headertablevalue {
+	font-weight: bold;
+}
+
+.loanstable {
+	margin: 10px auto 10px auto;
+	border-top: 1px solid #cdcdcd;
+	border-left: 1px solid #cdcdcd;
+	border-right: 1px solid #cdcdcd;
+	border-radius: 2px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	outline: none;
+	background-color: #fff;
+	width: 80%;
+	font-size: 15px;
+	font-weight: 300;
+	text-overflow: ellipsis;
+	text-align: left;
+}
+
+.loanstable tr {
+	vertical-align: top;
+}
+
+.loanstable th:first-child, .loanstable td:first-child {
+	width: 75%;
+}
+
+.loanstable th:last-child, .loanstable td:last-child {
+	text-align: right;
+}
+
+.loanstable th {
+	background: #dadada;
+}
+
+.loanstable td {
+	border-bottom: 1px solid #cdcdcd;
+	font-size: 90%;
+}
+
+.loanstable th, .loanstable td {
+	padding: .5rem;
+}
+
+.loanstable#prevloanstable {
+	width: 100%;
+}
+
+.btn-sm {
+	margin-left: 10px;
+
+}
+/* Modal Content/Box */
+
+.modal-content {
+	background-color: #fefefe;
+	margin: 30% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	border-radius: 2px;
+}
+
+.modalheaderdiv {
+	text-align: center;
+	font-weight: bold;
+	font-size: 120%;
+}
+
+.modalclose {
+	padding: 10px 40px;
+	color: #ffffff;
+	font-weight: bold;
+	border-radius: 2px;
+	border: 1px solid #909090;
+	background: #656565;
+	background: -webkit-linear-gradient(#808080, #505050);
+	background: -o-linear-gradient(#808080, #505050);
+	background: -moz-linear-gradient(#808080, #505050);
+	background: linear-gradient(#808080, #505050);
+	cursor: pointer;
+}
+
+.modalclose:hover {
+	background: #404040;
+	background: -webkit-linear-gradient(#505050, #202020);
+	background: -o-linear-gradient(#505050, #202020);
+	background: -moz-linear-gradient(#505050, #202020);
+	background: linear-gradient(#505050, #202020);
+}
+
+.modal-backdrop.show {
+	opacity: 0.75;
+}
