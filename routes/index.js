@@ -153,7 +153,7 @@ function getStatsSummary(req, res, next) {
   db.run("SELECT station, count(*) as sessions, sum(checkouts) as checkouts FROM sclog WHERE station LIKE $1 AND (datetime BETWEEN $2 AND $3) GROUP BY station ORDER BY station", [station, startdate + " 00:00:00", enddate + " 23:59:59"], function(err, results) {
     if (err) {
       console.log("Error querying log: " + err);
-      req.flash('error', err);
+      req.flash('error', err.toString());
       return res.redirect('/stats');
     }
 
@@ -172,7 +172,7 @@ function getStatsDetails(req, res, next) {
   db.run("SELECT * FROM sclog WHERE station LIKE $1 AND (datetime BETWEEN $2 AND $3) ORDER BY datetime", [station, startdate + " 00:00:00", enddate + " 23:59:59"], function(err, results) {
     if (err) {
       console.log("Error querying log: " + err);
-      req.flash('error', err);
+      req.flash('error', err.toString());
       return res.redirect('/stats');
     }
 
@@ -186,6 +186,7 @@ function renderStatsBox(req, res) {
   var stats = (req.statsresults) ? req.statsresults : null;
   var reptype = (req.reptype) ? req.reptype : null;
   res.render('stats', {
+    error: req.flash('error'),
     stations: req.stations,
     stats: stats,
     reptype: reptype,

@@ -1,6 +1,18 @@
 extends template
 
 block content
+	if error && error.length
+		div.card.bg-danger.col-6.mx-auto.text-white.mt-3#statserror
+			h4.card-header Error
+			div.card-body
+				p.card-title= error
+		script.
+			$(document).ready(function() {
+				setTimeout(function () {
+					$("#statserror").fadeOut(1000);
+				}, 4000);
+			});
+			
 	div.container
 		div
 			h2 Self Check Stats
