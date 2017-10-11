@@ -192,7 +192,8 @@ function renderStatsBox(req, res) {
     stationlist: req.params.station,
     startdate: req.params.start,
     enddate: req.params.end,
-    laststation: req.params.station
+    laststation: req.params.station,
+    stationgroups: config.stationGroups
   });
 }
 

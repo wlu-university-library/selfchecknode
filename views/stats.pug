@@ -19,12 +19,10 @@ block content
 				select#station.form-control(name="station")
 					optgroup
 						option(value="ALL", selected=(laststation == "ALL" ? true : false)) All Stations
-					optgroup
-						option(value="LAW", selected=(laststation == "LAW" ? true : false)) All Law
-						option(value="UNIV", selected=(laststation == "UNIV" ? true : false)) All Undergraduate
-					optgroup
-						option(value="LEYBURN", selected=(laststation == "LEYBURN" ? true : false)) All Leyburn
-						option(value="TELFORD", selected=(laststation == "TELFORD" ? true : false)) All Telford
+					each sg in stationgroups
+						optgroup
+							each s in sg
+								option(value=s.code, selected=(laststation == s.code ? true : false))= s.desc
 					optgroup
 						each s in stations
 							option(selected=(laststation == s.station ? true : false))= s.station
