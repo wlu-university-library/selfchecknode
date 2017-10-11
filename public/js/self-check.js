@@ -38,6 +38,7 @@ $(document).ready(function () {
 	}
 
 	function login() {
+		$("#bigload").show();
     $("#login").prop("disabled", true);		
 		var loginid = $("#userid").val();
 		if ((loginid != null) && (loginid != "")) {
@@ -46,10 +47,12 @@ $(document).ready(function () {
 	}
 
 	function prevloans() {
+		$("#littleload").show();
 		$.ajax({
 			type: "GET",
 			url:  "/loans"
 		}).done(function (data) {
+			$("#littleload").hide();
 			console.log(data);
 			if (data.error) {
 				$("#dataerror .card-text").text(data.error);
@@ -64,6 +67,7 @@ $(document).ready(function () {
 	}
 
 	function loan() {
+		$("#bigload").show();
 		$("#lookup").prop("disabled", true);
 		var barcode = $("#barcode").val();
 		if ((barcode != null) && (barcode != "")) {
@@ -72,6 +76,7 @@ $(document).ready(function () {
         url:  "/item",
         data: {barcode: barcode}
       }).done(function(data) {
+				$("#bigload").hide();
         console.log(data);
         if (data.error) {
           $("#dataerror .card-text").text(data.error);
