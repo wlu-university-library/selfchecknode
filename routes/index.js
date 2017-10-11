@@ -37,7 +37,7 @@ router.post('/', function(req, res) {
         res.redirect('/');
       }
       
-      if (data.errorsExist) {
+      if (data && data.errorsExist) {
         req.flash('error', data.errorList.error[0].errorMessage);
         res.redirect('/');
       } else {
@@ -115,7 +115,7 @@ router.get('/loans', function(req, res) {
       res.send({error: "Error getting data.  Please try again."});
     }
     
-    if (data.errorsExist) {
+    if (data && data.errorsExist) {
       res.send({error: data.errorList.error[0].errorMessage});
     } else {
       req.app.render('loans', {
