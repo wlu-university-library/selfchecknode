@@ -123,28 +123,94 @@ router.get('/loans', function(req, res) {
       }, function(err, html) {
         if (err) {
           console.log(err);
-          res.send({error: err});
-        } else {
-          res.send(html);
+          return res.send({error: err});
         }
+
+        return res.send(html);
       });
     }
   });
 });
 
-// ** TODO: /stats route for querying sclog
+function getStatsSearchBox(req, res, next) {
+  db.run("SELECT DISTINCT station FROM sclog ORDER BY station", function(err, results) {
+    if (err) {
+      console.log("Error getting stations: " + err);
+      req.flash('error', err);
+      return res.redirect('/stats');
+    }
+
+    req.stations = results;
+    return next();
+  });
+}
+
+function getStatsSummary(req, res, next) {
+  var station = (req.params.station === 'ALL') ? "%" : "%" + req.params.station + "%";
+  var startdate = req.params.start;
+  var enddate = req.params.end;
+
+  db.run("SELECT station, count(*) as sessions, sum(checkouts) as checkouts FROM sclog WHERE station LIKE $1 AND (datetime BETWEEN $2 AND $3) GROUP BY station ORDER BY station", [station, startdate + " 00:00:00", enddate + " 23:59:59"], function(err, results) {
+    if (err) {
+      console.log("Error querying log: " + err);
+      req.flash('error', err);
+      return res.redirect('/stats');
+    }
+
+    req.statsresults = results;
+    req.reptype = "summary";
+    return next();
+  });
+}
+
+
+function getStatsDetails(req, res, next) {
+  var station = (req.params.station === 'ALL') ? "%" : "%" + req.params.station + "%";
+  var startdate = req.params.start;
+  var enddate = req.params.end;
+
+  db.run("SELECT * FROM sclog WHERE station LIKE $1 AND (datetime BETWEEN $2 AND $3) ORDER BY datetime", [station, startdate + " 00:00:00", enddate + " 23:59:59"], function(err, results) {
+    if (err) {
+      console.log("Error querying log: " + err);
+      req.flash('error', err);
+      return res.redirect('/stats');
+    }
+
+    req.statsresults = results;
+    req.reptype = "detail";
+    return next();
+  });
+}
+
+function renderStatsBox(req, res) {
+  var stats = (req.statsresults) ? req.statsresults : null;
+  var reptype = (req.reptype) ? req.reptype : null;
+  res.render('stats', {
+    stations: req.stations,
+    stats: stats,
+    reptype: reptype,
+    stationlist: req.params.station,
+    startdate: req.params.start,
+    enddate: req.params.end,
+    laststation: req.params.station
+  });
+}
+
+router.get('/stats', getStatsSearchBox, renderStatsBox);
+router.get('/stats/:station/:start/:end', getStatsSearchBox, getStatsDetails, renderStatsBox);  
+router.get('/stats/summary/:station/:start/:end', getStatsSearchBox, getStatsSummary, renderStatsBox);  
 
 router.post('/logout', function(req, res) {
   var localTime  = moment.utc().toDate();
   localTime = moment(localTime).format('YYYY-MM-DD HH:mm:ss');
-  db.run("INSERT INTO sclog (station, datetime, checkouts) VALUES ($1, $2, $3)", ["LEYBURN-MAIN", localTime, req.session.barcodes.length], function(err, results) {
+  db.run("INSERT INTO sclog (ipaddress, station, datetime, checkouts) VALUES ($1, COALESCE((SELECT name FROM stations WHERE ipaddress = '" + req.hostname + "'), 'Unknown'), $2, $3)", [req.hostname, localTime, req.session.barcodes.length], function(err, results) {
     if (err) {
-      console.log("Error saving log to database");
-      res.redirect('/');
-    } else {
-      req.flash('success', true);
-      res.redirect('/');
+      console.log("Error saving log to database: " + err);
+      return res.redirect('/');
     }
+    
+    req.flash('success', true);
+    return res.redirect('/');
   });
 });
 

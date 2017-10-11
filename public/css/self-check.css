@@ -88,6 +88,11 @@ caption {
 	box-shadow: 0px 3px 5px 0px #acacac;
 }
 
+.container>div:first-of-type {
+	margin: 2em auto;
+	width: 50%;
+}
+
 .smallbox {
 	width: 500px;
 }
@@ -307,4 +312,10 @@ caption {
 
 .modal-backdrop.show {
 	opacity: 0.75;
+}
+
+#statsresults {
+	border-top: 1px dashed #ddd;
+	margin-top: 5em;
+	padding: 2em 1em;
 }

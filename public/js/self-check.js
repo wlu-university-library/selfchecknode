@@ -112,4 +112,12 @@ $(document).ready(function () {
 	$("#logout").on("click", logout);
 	$("#lookup").on("click", loan);
 	$("#viewloans").on("click", prevloans);
+
+	$("#details").on("click", function() {
+		window.location.href = "/stats/" + $("#station").val() + "/" + $("#startdate").val() + "/" + $("#enddate").val();
+	});
+
+	$("#summary").on("click", function() {
+		window.location.href = "/stats/summary/" + $("#station").val() + "/" + $("#startdate").val() + "/" + $("#enddate").val();
+	});
 });
