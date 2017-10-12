@@ -97,7 +97,7 @@ $(document).ready(function () {
   }
   
 	bindEnterKey();
-	checkInactivity();
+	//checkInactivity();
 	$("#userid").focus();
 	$("#userid").on("blur", function() {
 		if ($(this).val()) { login();	}
