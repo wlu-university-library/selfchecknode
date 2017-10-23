@@ -5,6 +5,7 @@ const config = require('../config.js');
 const parseString = require('xml2js').parseString;
 const moment = require('moment');
 const db = require('../utils/db');
+const requestIp = require('request-ip');
 
 router.get ('/', function(req, res) {
   var success, error; 
@@ -204,8 +205,9 @@ router.get('/stats/summary/:station/:start/:end', getStatsSearchBox, getStatsSum
 
 router.post('/logout', function(req, res) {
   var localTime  = moment.utc().toDate();
+  const clientIp = requestIp.getClientIp(req);
   localTime = moment(localTime).format('YYYY-MM-DD HH:mm:ss');
-  db.run("INSERT INTO sclog (ipaddress, station, datetime, checkouts) VALUES ($1, COALESCE((SELECT name FROM stations WHERE ipaddress = '" + req.ip + "'), 'Unknown'), $2, $3)", [req.hostname, localTime, req.session.barcodes.length], function(err, results) {
+  db.run("INSERT INTO sclog (ipaddress, station, datetime, checkouts) VALUES ($1, COALESCE((SELECT name FROM stations WHERE ipaddress = '" + clientIp + "'), 'Unknown'), $2, $3)", [req.hostname, localTime, req.session.barcodes.length], function(err, results) {
     if (err) {
       console.log("Error saving log to database: " + err);
       return res.redirect('/');
