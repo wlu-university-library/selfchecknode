@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(session({
   secret: 'keyboard cat', 
   cookie: { maxAge: 600000 },
-  resave: false,
+  resave: true,
   saveUninitialized: true
 }));
 app.use(flash());
