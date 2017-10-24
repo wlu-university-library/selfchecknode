@@ -205,7 +205,10 @@ router.get('/stats/summary/:station/:start/:end', getStatsSearchBox, getStatsSum
 
 router.post('/logout', function(req, res) {
   var localTime  = moment.utc().toDate();
-  const clientIp = requestIp.getClientIp(req);
+  var clientIp = requestIp.getClientIp(req);
+  if (clientIp.startsWith(":")) {             // Strip off IPv6 header
+    clientIp = clientIp.substr(7);
+  }
   localTime = moment(localTime).format('YYYY-MM-DD HH:mm:ss');
   db.run("INSERT INTO sclog (ipaddress, station, datetime, checkouts) VALUES ($1, COALESCE((SELECT name FROM stations WHERE ipaddress = '" + clientIp + "'), 'Unknown'), $2, $3)", [clientIp, localTime, req.session.barcodes.length], function(err, results) {
     if (err) {

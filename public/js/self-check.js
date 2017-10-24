@@ -11,7 +11,7 @@ $(document).ready(function () {
 
 		function settimeout() {
 			// Logout and clear data after 60 seconds of inactivity
-			interval = setTimeout(logout, 60000);
+			interval = setTimeout(logout, 59000);
 		}
 	}
 
@@ -97,7 +97,7 @@ $(document).ready(function () {
   }
   
 	bindEnterKey();
-	//checkInactivity();
+	checkInactivity();
 	$("#userid").focus();
 	$("#userid").on("blur", function() {
 		if ($(this).val()) { login();	}
