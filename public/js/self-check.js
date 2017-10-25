@@ -11,7 +11,7 @@ $(document).ready(function () {
 
 		function settimeout() {
 			// Logout and clear data after 60 seconds of inactivity
-			interval = setTimeout(logout, 55000);
+			interval = setTimeout(logout, 50000);
 		}
 	}
 
