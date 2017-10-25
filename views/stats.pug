@@ -51,40 +51,30 @@ block content
 			else
 				table.table.table-condensed.table-striped
 					if reptype === "summary"
-						- var cototal = 0
 						- var sestotal = 0
 						caption Session Summary for #{stationlist} from #{startdate} to #{enddate}
 						thead
 							th Station Name
 							th.text-right # of Sessions
-							th.text-right # of Checkouts
 						tbody
 							each row in stats
 								tr
 									td= row.station
 									td.text-right= row.sessions
-									td.text-right= row.checkouts
-									- cototal += Number(row.checkouts)
 									- sestotal += Number(row.sessions)
 						tfoot
 							th
 							th.text-right Total Sessions: #{sestotal}
-							th.text-right Total Checkouts: #{cototal}
 					else
-						- var cototal = 0
 						caption Session Details for #{stationlist} from #{startdate} to #{enddate}
 						thead
 							th Date/Time of Access
 							th Station Name
-							th.text-right # of Checkouts Processed for Session
 						tbody
 							each row in stats
 								tr
 									td= moment(row.datetime).format("YYYY-MM-DD HH:mm:ss")
 									td= row.station
-									td.text-right= row.checkouts
-									- cototal += row.checkouts
 						tfoot
 							th
 							th Total Sessions: #{stats.length}
-							th.text-right Total Checkouts: #{cototal}
