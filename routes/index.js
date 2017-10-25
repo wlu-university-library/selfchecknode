@@ -42,12 +42,25 @@ router.post('/', function(req, res) {
         req.flash('error', data.errorList.error[0].errorMessage);
         res.redirect('/');
       } else {
-        req.session.userid = data.primary_id;
-        req.session.checkouts = data.loans.value;
-        req.session.barcodes = [];
-        req.session.loansurl = data.loans.link;
-        res.render('checkout', {
-          user: data
+        var localTime  = moment.utc().toDate();
+        var clientIp = requestIp.getClientIp(req);
+        if (clientIp.startsWith(":")) {             // Strip off IPv6 header
+          clientIp = clientIp.substr(7);
+        }
+        localTime = moment(localTime).format('YYYY-MM-DD HH:mm:ss');
+        db.run("INSERT INTO sclog (ipaddress, station, datetime) VALUES ($1, COALESCE((SELECT name FROM stations WHERE ipaddress = '" + clientIp + "'), 'Unknown'), $2)", [clientIp, localTime], function(err, results) {
+          if (err) {
+            console.log("Error saving log to database: " + err);
+          }
+          
+          req.flash('success', true);
+          req.session.userid = data.primary_id;
+          req.session.checkouts = data.loans.value;
+          req.session.barcodes = [];
+          req.session.loansurl = data.loans.link;
+          res.render('checkout', {
+            user: data
+          });
         });
       }
     });
@@ -204,22 +217,8 @@ router.get('/stats/:station/:start/:end', getStatsSearchBox, getStatsDetails, re
 router.get('/stats/summary/:station/:start/:end', getStatsSearchBox, getStatsSummary, renderStatsBox);  
 
 router.post('/logout', function(req, res) {
-  console.log("Logout called");
-  var localTime  = moment.utc().toDate();
-  var clientIp = requestIp.getClientIp(req);
-  if (clientIp.startsWith(":")) {             // Strip off IPv6 header
-    clientIp = clientIp.substr(7);
-  }
-  localTime = moment(localTime).format('YYYY-MM-DD HH:mm:ss');
-  db.run("INSERT INTO sclog (ipaddress, station, datetime, checkouts) VALUES ($1, COALESCE((SELECT name FROM stations WHERE ipaddress = '" + clientIp + "'), 'Unknown'), $2, $3)", [clientIp, localTime, req.session.barcodes.length], function(err, results) {
-    if (err) {
-      console.log("Error saving log to database: " + err);
-      return res.redirect('/');
-    }
-    
-    req.flash('success', true);
-    return res.redirect('/');
-  });
+  req.flash('success', true);
+  return res.redirect('/');
 });
 
 module.exports = router;
