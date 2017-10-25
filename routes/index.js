@@ -204,6 +204,7 @@ router.get('/stats/:station/:start/:end', getStatsSearchBox, getStatsDetails, re
 router.get('/stats/summary/:station/:start/:end', getStatsSearchBox, getStatsSummary, renderStatsBox);  
 
 router.post('/logout', function(req, res) {
+  console.log("Logout called");
   var localTime  = moment.utc().toDate();
   var clientIp = requestIp.getClientIp(req);
   if (clientIp.startsWith(":")) {             // Strip off IPv6 header
