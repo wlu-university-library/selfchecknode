@@ -95,17 +95,22 @@ router.post('/item', function(req, res) {
           req.flash('error', data.errorList.error[0].errorMessage);
           res.redirect('/');
         } else {
-          var barcode = data.item_loan.item_barcode[0];
-          var title = data.item_loan.title[0];
-          var due = moment(data.item_loan.due_date[0]).format('MMMM d, YYYY');
-          if (req.session.barcodes.indexOf(barcode) > -1) {
-            req.flash('error', "Item has already been checked out.");
-            res.send({error: req.flash('error')});
+          if (data.item_loan && data.item_loan.item_barcode) {
+            var barcode = data.item_loan.item_barcode[0];
+            var title = data.item_loan.title[0];
+            var due = moment(data.item_loan.due_date[0]).format('MMMM d, YYYY');
+            if (req.session.barcodes.indexOf(barcode) > -1) {
+              req.flash('error', "Item has already been checked out.");
+              res.send({error: req.flash('error')});
+            } else {
+              req.session.checkouts++;
+              req.session.barcodes.push(barcode);
+              var row = "<tr><td>" + title + "</td><td>" + due + "</td></tr>";
+              res.send({checkouts: req.session.checkouts, html: row});
+            }
           } else {
-            req.session.checkouts++;
-            req.session.barcodes.push(barcode);
-            var row = "<tr><td>" + title + "</td><td>" + due + "</td></tr>";
-            res.send({checkouts: req.session.checkouts, html: row});
+            req.flash('error', "Item does not exist.  Please see library staff.");
+            res.send({error: req.flash('error')});
           }
         }
       });
