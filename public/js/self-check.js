@@ -44,7 +44,7 @@ $(document).ready(function () {
 		var cd = 10;
 		$("#logoutwarning").fadeIn();
 		countdown = setInterval(function() {
-			$("#coundown").text(cd--);
+			$("#countdown").text(cd--);
 		}, 1000);
 	}
 
