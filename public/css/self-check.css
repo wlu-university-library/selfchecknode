@@ -361,5 +361,8 @@ caption {
 	bottom: 0;
 	right: 0;
 	border-top-left-radius: 4px;
-	cursor: none;
+}
+
+#logoutwarning:hover {
+	cursor: none;	
 }
