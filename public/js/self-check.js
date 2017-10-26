@@ -126,7 +126,8 @@ $(document).ready(function () {
         } else {
 					$("#userloans").html(data.checkouts);
           $("#loanstable tbody").append(data.html);
-        }
+				}
+				$("#barcode").val("");
       });
     }
 	}
