@@ -49,6 +49,7 @@ $(document).ready(function () {
 
 	function resetWarning() {
 		$("#logoutwarning").hide();
+		$("#countdown").text("");
 	}
 
 	function bindEnterKey() {
