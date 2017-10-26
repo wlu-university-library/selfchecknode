@@ -109,7 +109,7 @@ router.post('/item', function(req, res) {
               res.send({checkouts: req.session.checkouts, html: row});
             }
           } else {
-            req.flash('error', "Item does not exist.  Please see library staff.");
+            req.flash('error', "Error scanning item.  Please see library staff.");
             res.send({error: req.flash('error')});
           }
         }
