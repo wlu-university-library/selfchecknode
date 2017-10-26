@@ -44,13 +44,14 @@ $(document).ready(function () {
 		var cd = 10;
 		$("#logoutwarning").fadeIn();
 		countdown = setInterval(function() {
-			$("#countdown").text(cd--);
+			$("#countdown").text(--cd);
 		}, 1000);
 	}
 
 	function resetWarning() {
 		clearInterval(countdown);
 		$("#logoutwarning").hide();
+		$("#countdown").text("10");
 	}
 
 	function bindEnterKey() {

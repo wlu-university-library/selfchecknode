@@ -56,4 +56,11 @@ block content
 		div.loader
 
 	div#logoutwarning Logging out in: 
-		span#countdown
+		span#countdown 10
+
+	script.
+		$(document).ready(function() {
+			$(document).on("click", function() {
+				$("#barcode").focus();
+			});
+		});

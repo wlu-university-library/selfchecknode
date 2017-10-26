@@ -39,3 +39,10 @@ block content
 		div.loader
 
 	include screensaver.pug
+
+	script.
+		$(document).ready(function() {
+			$(document).on("click", function() {
+				$("#userid").focus();
+			});
+		});
