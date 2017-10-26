@@ -5,13 +5,16 @@ $(document).ready(function () {
 	function checkInactivity() {
 		var interval;
 		$(document).on('mousemove keyup keypress click', function () {
+			$(".screensaver").hide();
 			clearTimeout(interval);
 			settimeout();
 		});
 
 		function settimeout() {
-			// Logout and clear data after 60 seconds of inactivity
-			interval = setTimeout(logout, 50000);
+			// Show screensaver after 30 seconds of inactivity
+			interval = setTimeout(function() {
+				$(".screensaver").fadeIn();
+			}, 3000);
 		}
 	}
 
@@ -97,7 +100,7 @@ $(document).ready(function () {
   }
   
 	bindEnterKey();
-	//checkInactivity();
+	checkInactivity();
 	$("#userid").focus();
 	$("#userid").on("blur", function() {
 		if ($(this).val()) { login();	}
