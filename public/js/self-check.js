@@ -51,7 +51,6 @@ $(document).ready(function () {
 	function resetWarning() {
 		clearInterval(countdown);
 		$("#logoutwarning").hide();
-		$("#countdown").text("");
 	}
 
 	function bindEnterKey() {
