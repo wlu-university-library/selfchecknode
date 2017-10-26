@@ -1,6 +1,7 @@
 $(document).ready(function () {
 	/* CONSTANTS */
 	var user;
+	var countdown;
 	
 	function checkInactivity() {
 		var interval;
@@ -42,12 +43,13 @@ $(document).ready(function () {
 	function showWarning() {
 		var cd = 10;
 		$("#logoutwarning").fadeIn();
-		setInterval(function() {
-			$("#countdown").text(cd--);
+		countdown = setInterval(function() {
+			$("#coundown").text(cd--);
 		}, 1000);
 	}
 
 	function resetWarning() {
+		clearInterval(countdown);
 		$("#logoutwarning").hide();
 		$("#countdown").text("");
 	}
