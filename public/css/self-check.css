@@ -1,10 +1,8 @@
 /* COMMMON */
 
 * {
-	/* font-family: "Roboto", "Helvetica", "Arial", sans-serif; */
 	margin: 0px;
 	padding: 0px;
-	/* line-height: 18px; */
 }
 
 body {
@@ -55,10 +53,6 @@ caption {
 	width: 100%;
 	background: #ededed;
 	background: #14436c;
-	/* background: -webkit-linear-gradient(#ffffff, #ededed);
-	background: -o-linear-gradient(#ffffff, #ededed);
-	background: -moz-linear-gradient(#ffffff, #ededed);
-	background: linear-gradient(#ffffff, #ededed);  */
 	border-bottom: 1px solid #909090;
 	box-shadow: 0px 3px 5px 0px #acacac;
 }
@@ -151,8 +145,6 @@ caption {
 }
 
 #barcode {
-	/* margin: 5px 10px 5px 93px; */
-	/* width: 645px; */
 	margin: 5px auto;
 }
 
@@ -162,32 +154,6 @@ caption {
 
 #prevloans {
 	padding-bottom: 1em;
-}
-
-.maincontent .databox button {
-	/* padding: 10px 40px;
-
-	color: #ffffff;
-	font-weight: bold;
-
-	border-radius: 5px;
-	border: 1px solid #909090;
-	
-	background: #656565;
-	background: -webkit-linear-gradient(#808080, #505050);
-	background: -o-linear-gradient(#808080, #505050);
-	background: -moz-linear-gradient(#808080, #505050);
-	background: linear-gradient(#808080, #505050);
-	
-	cursor: pointer;  */
-}
-
-.maincontent .databox button:hover {
-	/* background: #404040;
-	background: -webkit-linear-gradient(#505050, #202020);
-	background: -o-linear-gradient(#505050, #202020);
-	background: -moz-linear-gradient(#505050, #202020);
-	background: linear-gradient(#505050, #202020); */
 }
 
 #scanboxtitle {
@@ -215,8 +181,6 @@ caption {
 	padding: 15px 0px 15px 0px;
 	width: 33.3%;
 }
-
-.maincontent .headertable td .headertablekey {}
 
 .maincontent .headertable td .headertablevalue {
 	font-weight: bold;
