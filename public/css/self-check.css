@@ -348,3 +348,16 @@ caption {
 	0% { transform: rotate(0deg); }
 	100% { transform: rotate(360deg); }
 }
+
+#logoutwarning {
+	display: none;
+	font-size: .9rem;
+	font-style: italic;
+	font-weight: bold;
+	background: #f00;
+	color: #fff;
+	padding: .9rem;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}

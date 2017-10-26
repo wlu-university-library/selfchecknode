@@ -22,9 +22,12 @@ $(document).ready(function () {
 
 	function autoLogout() {
 		var interval;
+		var warning;
 		settimeout();
 		
 		$(document).on('mousemove keyup keypress click', function () {
+			resetWarning();
+			clearTimeout(warning);
 			clearTimeout(interval);
 			settimeout();
 		});
@@ -32,7 +35,20 @@ $(document).ready(function () {
 		function settimeout() {
 			// Logout user after 60 seconds of inactivity
 			interval = setTimeout(logout, 60000);
+			warning  = setTimeout(showWarning, 50000);
 		}
+	}
+
+	function showWarning() {
+		var cd = 10;
+		$("#logoutwarning").fadeIn();
+		setInterval(function() {
+			$("#countdown").text(cd--);
+		}, 1000);
+	}
+
+	function resetWarning() {
+		$("#logoutwarning").hide();
 	}
 
 	function bindEnterKey() {
