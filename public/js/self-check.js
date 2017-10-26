@@ -128,6 +128,7 @@ $(document).ready(function () {
           $("#loanstable tbody").append(data.html);
 				}
 				$("#barcode").val("");
+				$("#barcode").focus();
       });
     }
 	}
