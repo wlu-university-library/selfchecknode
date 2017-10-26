@@ -117,7 +117,7 @@ router.get('/loans', function(req, res) {
   var url = req.session.loansurl + "?apikey=" + config.apiKey + "&format=json";
   request(url, function(err, response, body) {
     if (err) {
-      config.log(err);
+      console.log(err);
       res.send({error: err});
     }
 
