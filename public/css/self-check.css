@@ -1,9 +1,17 @@
 /* COMMMON */
 @keyframes x {
 	0% {
-		left: 0;
-		top: 0;
+		transform: translateX( 0px );
 	}
+  25% {
+    transform: translateX( calc(100vw - 55px) );
+  }
+  50% {
+    transform: translateX( calc(100vw - 110px) );
+  }
+  75% {
+    transform: translateX( calc(100vw - 165px) );
+  }
 	100% {
 		transform: translateX( calc(100vw - 220px) );
 	}
@@ -11,9 +19,17 @@
 
 @keyframes y {
 	0% {
-		left: 0;
-		top: 0;
+		transform: translateY( 0px );
 	}
+  25% {
+    transform: translateY( calc(100vh - 19px) );
+  }
+  50% {
+    transform: translateY( calc(100vh - 38px) );
+  }
+  75% {
+    transform: translateY( calc(100vh - 56px) );
+  }
 	100% {
 		transform: translateY( calc(100vh - 75px) );
 	}
