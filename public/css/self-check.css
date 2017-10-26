@@ -362,7 +362,3 @@ caption {
 	right: 0;
 	border-top-left-radius: 4px;
 }
-
-#logoutwarning:hover {
-	cursor: none;	
-}

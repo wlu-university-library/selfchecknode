@@ -8,6 +8,7 @@ $(document).ready(function () {
 		settimeout();
 		
 		$(document).on('mousemove keyup keypress click', function () {
+			$("body").css("cursor", "default");
 			$(".screensaver").hide();
 			clearTimeout(interval);
 			settimeout();
@@ -16,6 +17,7 @@ $(document).ready(function () {
 		function settimeout() {
 			// Show screensaver after 60 seconds of inactivity
 			interval = setTimeout(function() {
+				$("body").css("cursor", "none");
 				$(".screensaver").fadeIn();
 			}, 60000);
 		}
