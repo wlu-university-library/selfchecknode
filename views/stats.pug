@@ -20,7 +20,7 @@ block content
 			div.form-row
 				div.form-group.col-sm-6
 					label(for="startdate") Start Date:
-					input#startdate.form-control(type="date", name="startdate", value=moment(startdate).format("YYYY-MM-DD"))
+					input#startdate.form-control(type="date", name="startdate", value=moment(startdate).format("YYYY-MM-DD"), min="2018-01-02")
 
 				div.form-group.col-sm-6
 					label(for="enddate") End Date: 

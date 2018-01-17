@@ -70,7 +70,7 @@ $(document).ready(function () {
 		$("#userid").bind("keypress", function (e) {
 			var code = e.keyCode || e.which;
 			// Enter key activates login
-			if (code === 13) {
+			if (code === 13 && $("#userid").val()) {
 				login();
 			} else if (code < 48 || code > 57) {  // only digits allowed
 				e.preventDefault();
@@ -142,7 +142,6 @@ $(document).ready(function () {
 	bindEnterKey();
 	checkInactivity();
 	autoLogout();
-	$("#userid").focus();
 	$("#userid").on("blur", function() {
 		if ($(this).val()) { login();	}
 	});
@@ -153,11 +152,15 @@ $(document).ready(function () {
 		// triggers login when the length of the ID hits 8 characters
 		if ($(this).val().length >= 8) { login();	}
 	});
-	$("#barcode").on("keyup", function () {
+	//$("#barcode").on("keyup", function () {
 		// triggers item lookup when the length of the barcode hits 14 numbers
-		if ($(this).val().length >= 14) {	loan();	}
+	//	if ($(this).val().length >= 14) {	loan();	}
+	//});
+	$("#login").on("click", function() {
+		if ($("#userid").val()) {
+			login();
+		}
 	});
-	$("#login").on("click", login);
 	$("#logout").on("click", logout);
 	$("#lookup").on("click", loan);
 	$("#viewloans").on("click", prevloans);
@@ -169,4 +172,6 @@ $(document).ready(function () {
 	$("#summary").on("click", function() {
 		window.location.href = "/stats/summary/" + $("#station").val() + "/" + $("#startdate").val() + "/" + $("#enddate").val();
 	});
+
+	setTimeout(function() { $("#userid").focus(); }, 2000);
 });

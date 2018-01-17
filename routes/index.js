@@ -44,7 +44,7 @@ router.post('/', function(req, res) {
       } else {
         var localTime  = moment.utc().toDate();
         var clientIp = requestIp.getClientIp(req);
-        if (clientIp.startsWith(":")) {             // Strip off IPv6 header
+        if (clientIp && clientIp.startsWith(":")) {             // Strip off IPv6 header
           clientIp = clientIp.substr(7);
         }
         localTime = moment(localTime).format('YYYY-MM-DD HH:mm:ss');
