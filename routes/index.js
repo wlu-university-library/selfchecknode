@@ -58,6 +58,7 @@ router.post('/', function(req, res) {
           req.session.checkouts = data.loans.value;
           req.session.barcodes = [];
           req.session.loansurl = data.loans.link;
+          req.session.clientIp = clientIp;
           res.render('checkout', {
             user: data
           });
@@ -69,14 +70,26 @@ router.post('/', function(req, res) {
 
 router.post('/item', function(req, res) {
   if (req.body.barcode) {
-    var reqbody = { 
-      circ_desk: {
-        value: config.circDesk,
-      },
-      library: {
-        value: config.libraryName 
-      }
-    };
+    if (req.session.clientIp.match("[0-9]{1,3}\.{1}[0-9]{1,3}\.{1}(126|131|132|0){1}\.{1}[0-9]{1,3}")) {
+      var reqbody = { 
+        circ_desk: {
+          value: config.circDesk,
+        },
+        library: {
+          value: "LAW"
+        }
+      };
+    } else {
+      var reqbody = { 
+        circ_desk: {
+          value: config.circDesk,
+        },
+        library: {
+          value: "UNIV"
+        }
+      };
+    }
+    
 
     var url = config.baseURL + "almaws/v1/users/" + req.session.userid + "/loans?user_id_type=all_unique&item_barcode=" + req.body.barcode + "&apikey=" + config.apiKey;
 
