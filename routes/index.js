@@ -70,7 +70,7 @@ router.post('/', function(req, res) {
 
 router.post('/item', function(req, res) {
   if (req.body.barcode) {
-    if (req.session.clientIp.match("[0-9]{1,3}\.{1}[0-9]{1,3}\.{1}(126|131|132|0){1}\.{1}[0-9]{1,3}")) {
+    if (req.session.clientIp.match("[0-9]{1,3}\.{1}[0-9]{1,3}\.{1}(126|131|132){1}\.{1}[0-9]{1,3}")) {
       var reqbody = { 
         circ_desk: {
           value: config.circDesk,
